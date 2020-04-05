@@ -6,12 +6,9 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.ServiceConnection
 import android.graphics.Color
-import android.net.Uri
 import android.os.IBinder
 import android.provider.Settings
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import com.baidu.location.BDAbstractLocationListener
@@ -27,8 +24,8 @@ import com.young.funride.entity.RoutePoints
 import com.young.funride.service.RouteService
 import com.young.funride.util.BikingRouteOverlay
 import com.young.funride.util.DialogUtil
+import com.young.funride.util.ToastUtils
 import com.young.funride.util.Utils
-import com.young.funride.util.toast
 import com.young.funride.viewmodel.NavViewModel
 import kotlinx.android.synthetic.main.fragment_nav.*
 
@@ -110,9 +107,7 @@ class NavFragment : BaseFragment<NavViewModel>() {
                     beginNavigation()
 
                 }?: run {
-                    context?.toast {
-                        getString(R.string.no_des)
-                    }
+                    ToastUtils.toast(context,getString(R.string.no_des))
                 }
             }else{
                 AlertDialog.Builder(context!!).setMessage(getString(R.string.if_end_ride)).setPositiveButton(getString(R.string.confirm)) { dialog, _ ->
@@ -121,11 +116,9 @@ class NavFragment : BaseFragment<NavViewModel>() {
                         activity?.unbindService(serviceConn)
                         isBinded = false
                     }
-
+                    selectedPoint = null
                     mViewModel.points.value?.routeList?.run {
                         if (size > 2){
-                            selectedPoint = null
-
                             val transaction = activity?.supportFragmentManager?.beginTransaction()
                             transaction?.add(R.id.container,RouteDetailFragment(),RouteDetailFragment::class.java.name)
                             transaction?.addToBackStack(null)
@@ -374,7 +367,7 @@ class NavFragment : BaseFragment<NavViewModel>() {
     override fun onDestroy() {
         mLocationClient.stop();
         mBaiduMap.isMyLocationEnabled = false
-        mapView.onDestroy();
+        mapView.onDestroy()
         super.onDestroy()
     }
 }

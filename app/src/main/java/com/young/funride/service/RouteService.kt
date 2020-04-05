@@ -7,9 +7,7 @@ import android.content.Intent
 import android.location.GnssStatus
 import android.location.LocationManager
 import android.os.Binder
-import android.os.Build
 import android.os.IBinder
-import androidx.annotation.RequiresApi
 import com.baidu.location.BDAbstractLocationListener
 import com.baidu.location.BDLocation
 import com.baidu.location.LocationClient
@@ -17,12 +15,13 @@ import com.baidu.location.LocationClientOption
 import com.baidu.mapapi.model.LatLng
 import com.baidu.mapapi.utils.DistanceUtil
 import com.google.gson.Gson
+import com.young.funride.R
 import com.young.funride.db.RouteDatabase
 import com.young.funride.entity.RoutePoint
 import com.young.funride.entity.RoutePoints
 import com.young.funride.entity.RouteRecord
+import com.young.funride.util.ToastUtils
 import com.young.funride.util.Utils
-import com.young.funride.util.toast
 import kotlinx.coroutines.*
 import java.text.DecimalFormat
 import java.util.*
@@ -41,9 +40,11 @@ class RouteService : Service() {
     private var showTime: String = "0分钟"
     private lateinit var callback: RouteCallback
     private lateinit var routePoints: RoutePoints
+    private lateinit var locationManager: LocationManager
+    private lateinit var gpsListener: GPSListener
+    private var showTips = true
 
     @SuppressLint("MissingPermission")
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate() {
         super.onCreate()
         beginTime = System.currentTimeMillis()
@@ -59,19 +60,17 @@ class RouteService : Service() {
 
         Utils.acquireWakeLock(applicationContext)
 
-        val locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        locationManager.registerGnssStatusCallback(GPSListener())
-
-
+        gpsListener = GPSListener()
+        locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        locationManager.registerGnssStatusCallback(gpsListener)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     inner class GPSListener : GnssStatus.Callback() {
         override fun onSatelliteStatusChanged(status: GnssStatus?) {
             //信号弱提示
             status?.run {
-                if (getSvid(GnssStatus.CONSTELLATION_GPS) < 4 || getCn0DbHz(GnssStatus.CONSTELLATION_GPS) < 25){
-                    this@RouteService.toast { "GPS号弱" }
+                if ((getSvid(GnssStatus.CONSTELLATION_GPS) < 4 || getCn0DbHz(GnssStatus.CONSTELLATION_GPS) < 25) && showTips){
+                    ToastUtils.toast(this@RouteService,getString(R.string.weak_gps))
                 }
             }
         }
@@ -116,6 +115,8 @@ class RouteService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         mLocationClient.stop()
+        gpsListener.onStopped()
+        locationManager.unregisterGnssStatusCallback(gpsListener)
         Utils.releaseWakeLock()
         val gson = Gson()
         val routeListStr: String = gson.toJson(routPointList)

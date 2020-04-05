@@ -13,9 +13,9 @@ import kotlinx.android.synthetic.main.fragment_route_detail.*
 
 class RouteDetailFragment : BaseFragment<NavViewModel>(){
 
-    lateinit var routePoints: RoutePoints
+    private lateinit var routePoints: RoutePoints
     private lateinit var points: ArrayList<LatLng>
-    lateinit var mBaiduMap: BaiduMap
+    private lateinit var mBaiduMap: BaiduMap
 
     override fun getLayoutResId() = R.layout.fragment_route_detail
 

@@ -14,5 +14,5 @@
     <string name="route_detail">行程详情</string>
     <string name="permission_tips">为了给你提供服务，该应用需要定位权限</string>
     <string name="no_gps">获取不到定位，请开启GPS后重新定位</string>
-    <string name="weak_gps">"GPS号弱"</string>
+    <string name="weak_gps">"GPS信号弱"</string>
 </resources>

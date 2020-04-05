@@ -137,9 +137,7 @@ open class BikingRouteOverlay(baiduMap: BaiduMap) : OverlayManager(baiduMap) {
         return null
     }
 
-    fun getLineColor(): Int {
-        return 0
-    }
+    fun getLineColor() = 0
 
     /**
      * 覆写此方法以改变默认终点图标

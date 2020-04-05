@@ -11,5 +11,4 @@ data class RouteRecord(
     @ColumnInfo(name = "distance") val distance: String,
     @ColumnInfo(name = "date") val date: String,
     @ColumnInfo(name = "time") val time: String
-) {
-}
+)

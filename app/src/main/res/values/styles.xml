@@ -1,0 +1,46 @@
+<resources>
+
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--ActionBar背景色-->
+        <item name="colorPrimary">@color/grey</item>
+        <!--状态栏颜色-->
+        <item name="colorPrimaryDark">@color/grey</item>
+        <!--控制各个控件被选中时的颜色-->
+        <item name="colorAccent">@color/grey</item>
+        <!--页面背景色-->
+        <item name="android:windowBackground">@color/white</item>
+        <!--各个控制控件的默认颜色-->
+        <item name="android:colorControlNormal">@color/grey</item>
+        <!--底部导航栏颜色-->
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppThemeDefault" parent="AppTheme.Base" />
+
+    <!-- 状态栏黑底白字 -->
+    <style name="AppThemeDark" parent="AppTheme.Base">
+        <item name="colorPrimaryDark">@color/black</item>
+    </style>
+
+    <!-- 状态栏黑底白字，布局上移 -->
+    <style name="TranslucentStatus" parent="AppTheme.Base">
+        <item name="android:windowActionBar">true</item>
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+    </style>
+
+    <style name="TranslucentLightStatus" parent="TranslucentStatus" />
+    <!-- 无状态栏 -->
+    <style name="FullScreen" parent="AppThemeDefault">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!--边框-->
+        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
+        <item name="android:windowIsTranslucent">false</item><!--半透明-->
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@android:color/transparent</item><!--背景透明-->
+        <item name="android:backgroundDimEnabled">false</item><!--模糊-->
+    </style>
+
+</resources>

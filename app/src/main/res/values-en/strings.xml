@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fun Ride</string>
+    <string name="start">Ride Now</string>
+    <string name="stop">Stop Ride</string>
+    <string name="no_des">you haven\'t select destination</string>
+
+    <string name="confirm">confirm</string>
+    <string name="cancel">@android:string/cancel</string>
+    <string name="distance">distance</string>
+    <string name="distance_">distance：%1s</string>
+    <string name="time">time</string>
+    <string name="time_">time：%1s</string>
+    <string name="if_end_ride">Are you sure to end ride？</string>
+    <string name="in_ride">Riding</string>
+    <string name="route_detail">Trip Detail</string>
+    <string name="permission_tips">For provide services,we need to access your location</string>
+    <string name="no_gps">Can\'t get location,retry after turn on GPS</string>
+    <string name="weak_gps">Weak GPS signal</string>
+</resources>

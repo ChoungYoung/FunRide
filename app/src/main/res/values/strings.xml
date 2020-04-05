@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">快乐出行</string>
+    <string name="start">立刻出发</string>
+    <string name="no_des">未选中目的地</string>
+    <string name="stop">结束行程</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="distance">骑行距离</string>
+    <string name="distance_">骑行距离：%1s</string>
+    <string name="time">骑行时间</string>
+    <string name="time_">骑行时间：%1s</string>
+    <string name="if_end_ride">确定结束行程？</string>
+    <string name="in_ride">行程中</string>
+    <string name="route_detail">行程详情</string>
+    <string name="permission_tips">为了给你提供服务，该应用需要定位权限</string>
+    <string name="no_gps">获取不到定位，请开启GPS后重新定位</string>
+    <string name="weak_gps">"GPS号弱"</string>
+</resources>

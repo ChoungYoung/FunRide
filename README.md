@@ -1,3 +1,5 @@
+README For English Version: [README-EN](https://github.com/ChoungYoung/FunRide/blob/master/README-EN.MD "README-EN")
+
 # FunRide
 快乐出行是使用kotlin开发的一款导航应用
 
